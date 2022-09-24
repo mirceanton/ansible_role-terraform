@@ -1,5 +1,5 @@
 Ansible Role: Terraform
-=====================
+=======================
 
 An Ansible role that installs Terraform by configuring the apt repo.
 
