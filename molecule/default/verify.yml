@@ -11,7 +11,7 @@
 
   tasks:
     - name: Try running terraform
-      ansible.builtin.command: "{{ terraform_pkg_name }} --version"
+      ansible.builtin.command: "terraform --version"
       register: __command__
       changed_when: false
 
