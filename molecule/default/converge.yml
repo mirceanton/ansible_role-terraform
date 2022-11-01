@@ -3,6 +3,10 @@
   hosts: all
   gather_facts: true
 
+  vars_files:
+    - ../../defaults/main.yml
+    - ../../vars/main.yml
+
   tasks:
     - name: "Include mirceanton.terraform"
       ansible.builtin.include_role:
