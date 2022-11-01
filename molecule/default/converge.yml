@@ -11,3 +11,8 @@
     - name: "Include mirceanton.terraform"
       ansible.builtin.include_role:
         name: "mirceanton.terraform"
+      vars:
+        downloader_archive_url: "{{ terraform_url }}"
+        downloader_archive_dest: /tmp/
+        downloader_exec_src: /tmp/terraform
+        downloader_exec_dest: /usr/bin/terraform
