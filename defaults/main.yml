@@ -1,2 +1,9 @@
 ---
+# The official URL to download the terraform binary
 terraform_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_{{ terraform_os }}_{{ terraform_architecture }}.zip
+
+# Temporary directory to store intermediate files
+terraform_temp_download_dir: /tmp
+
+# Path to the terraform executable
+terraform_exec_path: /usr/bin/terraform

@@ -4,6 +4,6 @@
     name: mirceanton.downloader
   vars:
     downloader_archive_url: "{{ terraform_url }}"
-    downloader_archive_dest: /tmp/
-    downloader_exec_src: /tmp/terraform
-    downloader_exec_dest: /usr/bin/terraform
+    downloader_archive_dest: "{{ terraform_temp_download_dir }}"
+    downloader_exec_src: "{{ terraform_temp_download_dir }}/terraform"
+    downloader_exec_dest: "{{ terraform_exec_path }}"
