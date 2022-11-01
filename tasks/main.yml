@@ -1,27 +1,8 @@
 ---
-- name: Install prerequisites
-  ansible.builtin.apt:
-    name: "{{ item }}"
-    state: "{{ terraform_prereq_state }}"
-    update_cache: true
-    cache_valid_time: 3600
-  loop: "{{ terraform_prereq }}"
-
-- name: Add The Hashicorp GPG Key
-  ansible.builtin.shell:
-    cmd: |
-      wget -O- {{ terraform_gpg_url }} |
-        gpg --dearmor |
-        tee {{ terraform_gpg_file }}
-    creates: "{{ terraform_gpg_file }}"
-    chdir: /tmp # change dir to basically discard the wget log file :)
-
-- name: Add The Hashicorp APT Repo
-  ansible.builtin.apt_repository:
-    repo: "{{ terraform_apt_repo }}"
-    state: "{{ terraform_apt_repo_state }}"
-
-- name: Install Terraform
-  ansible.builtin.apt:
-    name: "{{ terraform_pkg_name }}"
-    state: "{{ terraform_pkg_state }}"
+- ansible.builtin.include_role:
+    name: mirceanton.downloader
+  vars:
+    downloader_archive_url: "{{ terraform_url }}"
+    downloader_archive_dest: /tmp/
+    downloader_exec_src: /tmp/terraform
+    downloader_exec_dest: /usr/bin/terraform
