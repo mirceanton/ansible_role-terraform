@@ -3,7 +3,16 @@
   hosts: all
   gather_facts: true
 
+  vars_files:
+    - ../../defaults/main.yml
+    - ../../vars/main.yml
+
   tasks:
     - name: "Include mirceanton.terraform"
       ansible.builtin.include_role:
         name: "mirceanton.terraform"
+      vars:
+        downloader_archive_url: "{{ terraform_url }}"
+        downloader_archive_dest: "{{ terraform_temp_download_dir }}"
+        downloader_exec_src: "{{ terraform_temp_download_dir }}/terraform"
+        downloader_exec_dest: "{{ terraform_exec_path }}"

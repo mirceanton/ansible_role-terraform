@@ -1,7 +1,7 @@
 Ansible Role: Terraform
 =======================
 
-An Ansible role that installs Terraform by configuring the apt repo.
+An Ansible role that installs Terraform by downloading the precompiled binary.
 
 Requirements
 ------------
@@ -11,9 +11,13 @@ N/A
 Role Variables
 --------------
 
-This role has no customizable variables.
+|         Variable         |  Type  | Default |                 Description                  |
+| :----------------------: | :----: | :-----: | :------------------------------------------: |
+|   `terraform_version`    | string | `1.3.3` |     The version of terraform to install.     |
+| `terraform_architecture` | string | `amd64` | The architecture for the binary to download. |
+|      `terraform_os`      | string | `linux` |      The OS for the binary to download.      |
 
-To check the default variables, take a look at the [defaults](defaults/main.yml) file.
+For more details about the **default** variables, take a look at the [defaults/main.yml](defaults/main.yml).
 
 Dependencies
 ------------
@@ -30,6 +34,10 @@ Example Playbook
 
   roles:
     - role: mirceanton.terraform
+      vars:
+        terraform_version: "1.3.3"
+        terraform_architecture: arm64
+        terraform_os: linux
 ```
 
 License

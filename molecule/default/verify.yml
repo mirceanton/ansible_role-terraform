@@ -7,22 +7,16 @@
 
   vars_files:
     - ../../defaults/main.yml
-
-  pre_tasks:
-    - name: Check packages
-      package_facts:
-        manager: auto
+    - ../../vars/main.yml
 
   tasks:
-    - name: Check if apt packages are installed
-      ansible.builtin.assert:
-        that: "'{{ terraform_pkg_name }}' in ansible_facts.packages"
-
     - name: Try running terraform
-      ansible.builtin.command: "{{ terraform_pkg_name }} --version"
+      ansible.builtin.command: "terraform --version"
       register: __command__
       changed_when: false
 
     - name: Check command output
       ansible.builtin.assert:
-        that: __command__.rc == 0
+        that:
+          - __command__.rc == 0
+          - terraform_version in __command__.stdout

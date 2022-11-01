@@ -1,31 +1,9 @@
 ---
-# The state for the prerequisite apt packages
-terraform_prereq_state: present
+# The official URL to download the terraform binary
+terraform_url: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_{{ terraform_os }}_{{ terraform_architecture }}.zip
 
-# The list of prerequisite apt packages
-terraform_prereq:
-  - gnupg
-  - software-properties-common
-  - wget
-  - apt-transport-https
+# Temporary directory to store intermediate files
+terraform_temp_download_dir: /tmp
 
-# The URL for the hasichorp repository gpg
-terraform_gpg_url: https://apt.releases.hashicorp.com/gpg
-
-# The path at which the gpg file is downloaded
-terraform_gpg_file: /usr/share/keyrings/hashicorp-archive-keyring.gpg
-
-# The URL for the hasichorp repository
-terraform_apt_repo_url: https://apt.releases.hashicorp.com
-
-# The hashicorp repo config
-terraform_apt_repo: "deb [signed-by={{ terraform_gpg_file }}] {{ terraform_apt_repo_url }} {{ ansible_distribution_release }} main"
-
-# The hashicorp repo state (present -> install, absent -> uninstall)
-terraform_apt_repo_state: present
-
-# The Terraform apt package name
-terraform_pkg_name: terraform
-
-# The Terraform apt package state (present -> install, absent -> uninstall)
-terraform_pkg_state: present
+# Path to the terraform executable
+terraform_exec_path: /usr/bin/terraform
